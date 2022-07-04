@@ -1,0 +1,235 @@
+:root                                                           {
+                                                                    --check-ball-color: rgb(2, 123, 232);
+                                                                    --check-ball-width: 22px;
+                                                                    --check-ball-height: 22px;
+                                                                    --check-ball-radius: 50px;
+                                                                    --check-ball-font-color: var(--check-font-color);
+                                                                    --check-bg-color-checked: rgb(43, 188, 255);
+                                                                    --check-bg-color-unchecked: white;
+                                                                    --check-border: 2px;
+                                                                    --check-border-color: rgb(3, 116, 192);
+                                                                    --check-border-radius: 50px;
+                                                                    --check-border-type: solid;
+                                                                    --check-checked: 'SI';
+                                                                    --check-font: 'arial';
+                                                                    --check-font-color: #ffffff;
+                                                                    --check-font-size: 10px;
+                                                                    --check-height: 22px;
+                                                                    --check-span-txt-margin: 0px 0px 0px 5px;
+                                                                    --check-transition: 200ms ease-out;
+                                                                    --check-unchecked: 'NO';
+                                                                    --check-width: 50px;
+                                                                    --check-lbl-txt-size: 16px;
+
+                                                                    --txt1-width: 100%;
+                                                                    --txt1-height: 35px;
+                                                                    --txt1-font: 'arial';
+                                                                    --txt1-color: rgb(0, 0, 0);
+
+                                                                    --btn1-height: auto;
+                                                                    --btn1-width: auto;
+                                                                    --btn1-bgColor: rgb(2, 123, 232);
+                                                                    --btn1-bgColor-hover: rgb(127, 213, 253);
+                                                                    --btn1-border-radius: 16px;
+                                                                    --btn1-box-shadow: 0px 0px 20px var(--btn1-bgColor);
+                                                                    --btn1-box-shadow-hover: 0px 0px 20px var(--btn1-bgColor-hover);
+                                                                    --btn1-font-color: #ffffff;
+                                                                    --btn1-font-family: 'arial';
+                                                                    --btn1-font-size: 20px;
+                                                                    --btn1-margin: 0px;
+                                                                    --btn1-padding: 15px 18px;
+
+                                                                    --btn2-bgColor: transparent;
+                                                                    --btn2-background: transparent;
+                                                                    --btn-background-margin: 0px;
+                                                                    --btn2-border: 1px solid rgb(2, 123, 232);
+                                                                    --btn2-border-hover: 1px solid rgb(127, 213, 253);
+                                                                    --btn2-border-radius: 10px;
+                                                                    --btn2-color-hover: rgb(127, 213, 253);
+                                                                    --btn2-bgColor-hover: var(--btn2-bgColor);
+                                                                    --btn2-font-family: 'arial';
+                                                                    --btn2-font-size: 16px;
+                                                                    --btn2-height: 46px;
+                                                                    --btn2-line-height: var(--btn2-height);
+                                                                    --btn2-padding: auto;
+                                                                    --btn2-txt-color: rgb(2, 123, 232);
+                                                                    --btn2-txt-align: center;
+                                                                    --btn2-width: 214px;
+                                                                }
+
+/*checkbox*/
+label.check-control                                               {
+                                                                    height: calc(var(--check-height) + calc(var(--check-border) * 2));
+                                                                    line-height: calc(var(--check-height) + calc(var(--check-border) * 2));
+                                                                }
+
+span.check-caption                                              {
+                                                                    margin: var(--check-span-txt-margin);
+                                                                    color: var(--check-font-color);
+                                                                    font-size: var(--check-lbl-txt-size);
+                                                                    cursor: pointer;
+                                                                }
+
+label.lblCheck                                                  {
+                                                                    position: relative;
+                                                                    cursor: pointer;
+                                                                }
+                                                                
+.lblCheck input[type="checkbox"]                                {
+                                                                    opacity: 0;
+                                                                    display: none;
+                                                                }
+
+span.check                                                      {
+                                                                    display: block;
+                                                                    width: var(--check-width);
+                                                                    height: var(--check-height);
+                                                                    border: var(--check-border) var(--check-border-type) var(--check-border-color);
+                                                                    background-color: var(--check-bg-color-unchecked);
+                                                                    border-radius: var(--check-border-radius);
+                                                                    transition: var(--check-transition);
+                                                                }
+
+.check::before                                                  {
+                                                                    content: var(--check-unchecked);
+                                                                    font-family: var(--check-font);
+                                                                    color: var(--check-ball-font-color);
+                                                                    font-size: var(--check-font-size);
+                                                                    /* padding: 5px 0px 0px 0px; */
+                                                                    text-align: center;
+                                                                    line-height: var(--check-ball-height);
+                                                                    position: absolute;
+                                                                    width: var(--check-ball-width);
+                                                                    height: var(--check-ball-height);
+                                                                    background-color: var(--check-ball-color);
+                                                                    box-sizing: border-box;
+                                                                    border-radius: var(--check-ball-radius);
+                                                                    transition: var(--check-transition);
+                                                                }
+
+.lblCheck input[type="checkbox"]:checked ~ .check::before       {
+                                                                    content: var(--check-checked);
+                                                                    /* padding: 5px 0px 0px 6px; */
+                                                                    text-align: center;
+                                                                    line-height: var(--check-height);
+                                                                    transform: translateX(calc(var(--check-width) - var(--check-ball-width)));
+                                                                }
+
+.lblCheck input[type="checkbox"]:checked ~ .check               {
+                                                                    background-color: var(--check-bg-color-checked);
+                                                                    transition: var(--check-transition); 
+                                                                }
+
+.otro input[type="checkbox"]:checked{
+    display: block;
+    opacity: 1;
+    position: absolute;
+    z-index: 1000;
+}
+
+/*Input text and password*/
+input[type="email"],
+input[type="text"], 
+input[type="tel"],
+input[type="password"]                                          {
+                                                                    appearance: none;
+                                                                    -webkit-appearance: none;
+                                                                    -moz-appearance: none;
+                                                                    border-radius: 0px;
+                                                                    -webkit-border-radius: 0px;
+                                                                    outline: none;
+                                                                    width: var(--txt1-width);
+                                                                    height: var(--txt1-height);
+                                                                    border: none;
+                                                                    padding: 0px 5px 0px 5px;
+                                                                    font-family: var(--txt1-font);
+                                                                    background-color: transparent;
+                                                                    border-bottom: 1px solid var(--txt1-color);
+                                                                    color: var(--txt1-color);
+                                                                    margin-bottom: 10px;
+                                                                }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus                                   {
+                                                                    border: none;
+                                                                    caret-color: var(--txt1-color);
+                                                                    border-bottom: 1px solid var(--txt1-color);
+                                                                    -webkit-text-fill-color: var(--txt1-color);
+                                                                    /* -webkit-box-shadow: 0 0 0px 10px transparent inset; */
+                                                                    transition: background-color 5000s ease-in-out 0s;
+                                                                }
+
+input[type="email"]::placeholder,
+input[type="text"]::placeholder, 
+input[type="tel"]::placeholder,
+input[type="password"]::placeholder                             {
+                                                                    padding: 0px 5px 0px 5px;
+                                                                    color: var(--txt1-color);
+                                                                }
+
+/*Buttons*/
+
+.alpha-btn1{
+    background-color: var(--btn1-bgColor);
+    border: none;
+    border-radius: var(--btn1-border-radius);
+    box-shadow: var(--btn1-box-shadow);
+    color: var(--btn1-font-color);
+    cursor: pointer;
+    font-family: var(--btn1-font-family);
+    font-size: var(--btn1-font-size);
+    height: var(--btn1-height);
+    margin: var(--btn1-margin);
+    outline: none;
+    padding: var(--btn1-padding);
+    inline-size: var(--btn1-height);
+    width: var(--btn1-width);
+}
+
+.alpha-btn1:hover, .alpha-btn1-hover{
+    background-color: var(--btn1-bgColor-hover);
+    box-shadow: var(--btn1-box-shadow-hover);
+}
+
+.alpha-btn2{
+    background-color: var(--btn2-bgColor);
+    border: var(--btn2-border);
+    border-radius: var(--btn2-border-radius);
+    color: var(--btn2-txt-color);
+    cursor: pointer;
+    font-size: var(--btn2-font-size);
+    font-family: var(--btn2-font-family);
+    height: var(--btn2-height);
+    padding: var(--btn2-padding);
+    width: var(--btn2-width);
+    line-height: var(--btn2-line-height);
+    text-align: var(--btn2-txt-align);
+    position: relative;
+    /* position: absolute; */
+    /* transition: background-color var(--time-transition), color var(--time-transition); */
+}
+
+.alpha-btn2:hover, .alpha-btn2-hover{
+    border: var(--btn2-border-hover);
+    color: var(--btn2-color-hover);
+    background-color: var(--btn2-bgColor-hover);
+}
+
+.alpha-btn2::before{
+    content: '';
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: var(--btn2-background);
+    margin: var(--btn-background-margin);
+    position: absolute;
+    /* left: 20px;
+    top: 5px; */
+}

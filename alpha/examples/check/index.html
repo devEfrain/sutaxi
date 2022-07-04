@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alpha css | checkbox example</title>
+    <!-- este archivo es de la maquetación -->
+    <link rel="stylesheet" href="../../alpha.css">
+    <!-- este archivo es de solo de los controles -->
+    <link rel="stylesheet" href="../../alpha_cc.css">
+    <style>
+
+        :root{
+            /* --check-width: 100px;
+            --check-height: 2px;
+            --check-border-radius: 0px;
+            --check-border: 0px;
+            --check-bg-color-unchecked: rgba(114, 214, 253, 1);
+            --check-bg-color-checked: rgb(167, 0, 92);
+            --check-checked: ':v';
+            --check-unchecked: 'xD';
+            --check-font: 'verdana'; */
+            --check-font-color: black;
+        }
+
+        .container {
+            width: calc(100% - 100px);
+            margin: 50px 50px;
+            position: absolute;
+        }
+
+        /* .check::before{
+            height: 100px;
+        } */
+        /* es lo mismo pero sin estar escribiendo tango codigo de mas */
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <label class="check-control clearfix">
+            <span class="check-caption f-r unselectable">Elote noob :v</span>
+            <label class="lblCheck f-l" title="Click para activar o desactivar">
+                <input class="rememberData" type="checkbox">
+                <span class="check"></span>
+            </label>
+        </label>
+
+        <label class="check-control clearfix unselectable">
+            <span class="check-caption f-l centerX">Recordar usuario y contrase&ntilde;a</span>
+            <label class="lblCheck f-r centerX" title="Click para activar o desactivar">
+                <input class="rememberData" type="checkbox">
+                <span class="check"></span>
+            </label>
+        </label>
+
+    </div>
+</body>
+</html>

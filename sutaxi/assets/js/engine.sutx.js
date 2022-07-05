@@ -77,6 +77,10 @@ function set_mnu() {
     engine.lnk.each( function( index ){
         index.event( "click", function( e ){
             e.preventDefault();
+            for( var x = 0; x < engine.lnk.context.length; x++ ){
+                _$( engine.lnk.context[ x ] ).child().child().child().child().css( "fill", "rgb( 80, 80, 80)");
+            }
+            this.child().child().child().child().css( "fill", "rgb(127, 196, 191)" );
             var item = this.attr( "data-n" );
             engine.home.css( "visibility", "visible" );
             engine.headerTitle.html( engine.lang.mnu[ this.attr( "data-n" ) ] );

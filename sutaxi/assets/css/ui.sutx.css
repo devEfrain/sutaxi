@@ -198,7 +198,7 @@ footer#app-mnu > ul > a > li > .mnu-box > .title{
                                                     margin: 0px 30px;
                                                 }
 
-#call > .icon, #whatsapp > .icon                {
+#call > a > .icon, #whatsapp > a > .icon        {
                                                     background-color: var(--app-turquesa1);
                                                     background-repeat: no-repeat;
                                                     background-position: center;
@@ -210,17 +210,18 @@ footer#app-mnu > ul > a > li > .mnu-box > .title{
                                                     width: 50px;
                                                 }
 
-#call > .icon:hover, #whatsapp > .icon:hover    {
+#call > a > .icon:hover, 
+#whatsapp > a > .icon:hover                     {
                                                     background-color: var(--app-turquesa2);
                                                     box-shadow: 0px 0px 10px var(--app-turquesa2);
                                                 }                                                
                                                 
 
-#call > .icon                                   {
+#call > a > .icon                                   {
                                                     background-image: url('../src/svg/phone.svg');
                                                 }
 
-#whatsapp > .icon                               {
+#whatsapp > a > .icon                               {
                                                     background-image: url('../src/svg/whatsapp.svg');
                                                 }
                                                 

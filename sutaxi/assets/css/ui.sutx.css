@@ -1,7 +1,7 @@
 :root                                           {
                                                     --app-grey1: rgb(45, 45, 45);
                                                     --app-grey2: rgb( 80, 80, 80); 
-                                                    --app-turquesa1: rgb(127, 196, 191);
+                                                    --app-turquesa1: rgb(115, 211, 203);
                                                     --app-turquesa2: rgb(65, 114, 111);
                                                     --btn2-background: url(../sutaxi/assets/src/svg/options.svg) no-repeat center;
                                                     --btn-background-margin: 5px 0px 0px 0px;
@@ -269,6 +269,13 @@ footer#app-mnu > ul > a > li > .mnu-box > .title{
                                                     position: relative;
                                                 }
 
+#wrap-map > #picker                             {
+    left: calc( 50% - (23.484px / 2));
+    position: absolute;
+    top: calc( 50% - 20px );
+    z-index: 1000;
+}                                                
+
 #wrap-map > #buttons                            {
                                                     bottom: 0px;
                                                     display: grid;
@@ -280,8 +287,9 @@ footer#app-mnu > ul > a > li > .mnu-box > .title{
                                                     z-index: 1000;
                                                 }
 
-#wrap-map > #buttons > #btn-whatsapp,
+#wrap-map > #buttons > a > #btn-whatsapp,
 #wrap-map > #buttons > #btn-options             {
+                                                    height: 50px;
                                                     background-color: var(--app-turquesa1);
                                                     border-radius: 25px;
                                                     box-shadow: 0px 0px 10px var(--app-turquesa1);
@@ -289,7 +297,7 @@ footer#app-mnu > ul > a > li > .mnu-box > .title{
                                                 }                                                
 
 
-#wrap-map > #buttons > #btn-whatsapp:hover,
+#wrap-map > #buttons > a > #btn-whatsapp:hover,
 #wrap-map > #buttons > #btn-options:hover,
 #wrap-map > #buttons > :nth-child(2) >
 #btn-origin:hover                               {
@@ -369,27 +377,31 @@ select                                          {
     display: grid;
     gap: 2rem;
     grid-auto-rows: 440px;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     /* grid-auto-flow: dense; */
     padding: 2rem 1rem;
 }
 
 #app-module > #wrap-services > .card            {
-    background-color: cadetblue;
+    background-color: var(--app-turquesa1);
     border-radius: 30px 30px 0px 0px;
     overflow: hidden;
 }
 
 #app-module > #wrap-services > .card >
 .cover                                          {
-    background-color: blue;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     height: 120px;
+    width: 100%;
     position: relative;
 }
 
 #app-module > #wrap-services > .card >
 .cover > .img                                   {
-    background-color: blueviolet;
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 50%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .4);
     height: 118px;
@@ -402,9 +414,9 @@ select                                          {
 .title                                         {
     color: white;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 14px; 
     text-transform: uppercase;
-    margin: 70px 0px 0px 0px;
+    margin: 70px 10px 0px 10px;
 }
 
 #app-module > #wrap-services > .card >
@@ -425,6 +437,61 @@ select                                          {
     margin-right: 10px;
 }
 
+#wrap-services > :nth-child(1) > .cover         {
+    background-image: url("../src/img/card1_cover.jpg");
+}
+#wrap-services > :nth-child(1) > .cover > .img  {
+    background-image: url("../src/img/card1_img.jpg");
+}
+
+#wrap-services > :nth-child(2) > .cover         {
+    background-image: url("../src/img/card2_cover.jpg");
+}
+#wrap-services > :nth-child(2) > .cover > .img  {
+    background-image: url("../src/img/card2_img.jpg");
+}
+
+#wrap-services > :nth-child(3) > .cover         {
+    background-image: url("../src/img/card3_cover.jpg");
+}
+#wrap-services > :nth-child(3) > .cover > .img  {
+    background-image: url("../src/img/card3_img.jpg");
+}
+
+#wrap-services > :nth-child(4) > .cover         {
+    background-image: url("../src/img/card4_cover.jpg");
+}
+#wrap-services > :nth-child(4) > .cover > .img  {
+    background-image: url("../src/img/card4_img.jpg");
+}
+
+#wrap-services > :nth-child(5) > .cover         {
+    background-image: url("../src/img/card5_cover.jpg");
+}
+#wrap-services > :nth-child(5) > .cover > .img  {
+    background-image: url("../src/img/card5_img.jpg");
+}
+
+#wrap-services > :nth-child(6) > .cover         {
+    background-image: url("../src/img/card6_cover.jpg");
+}
+#wrap-services > :nth-child(6) > .cover > .img  {
+    background-image: url("../src/img/card6_img.jpg");
+}
+
+#wrap-services > :nth-child(7) > .cover         {
+    background-image: url("../src/img/card5_img.jpg");
+}
+#wrap-services > :nth-child(7) > .cover > .img  {
+    background-image: url("../src/img/card7_img.jpg");
+}
+
+#wrap-services > :nth-child(8) > .cover         {
+    background-image: url("../src/img/card8_cover.jpg");
+}
+#wrap-services > :nth-child(8) > .cover > .img  {
+    background-image: url("../src/img/card8_img.jpg");
+}
 /*=================================================================
                         module - config
 =================================================================*/

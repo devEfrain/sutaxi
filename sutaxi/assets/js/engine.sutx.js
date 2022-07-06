@@ -118,6 +118,9 @@ function set_module( item ){
         case "2":
             mod_hotel();
         break;
+        case "3":
+            mod_services();
+        break;
         case "4":
             mod_config();
         break;
@@ -300,6 +303,22 @@ function mod_hotel(){
         );
     } );
 }
+
+function mod_services(){
+    var cards = _$( ".card" ),
+        item = 1;
+
+    cards.each( function( index ){
+        index.data( {
+            title: engine.lang.services[ item ].title,
+            trip: engine.lang.services[ item ].trip,
+            time: engine.lang.services[ item ].time,
+            people: engine.lang.services[ item ].people,
+            price: engine.lang.services[ item ].price
+        } );
+        item++;
+    } );
+};
 
 function mod_config(){
     var idx = 0;

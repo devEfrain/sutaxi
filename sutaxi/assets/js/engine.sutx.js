@@ -4,7 +4,9 @@ var engine = {
     mnu: undefined,
     appModule: undefined,
     rates: undefined,
-    map: {},
+    map: {
+        coords: {}
+    },
 };
 
 window.addEventListener( "load", function(){
@@ -43,6 +45,12 @@ window.addEventListener( "load", function(){
     // obtenemos las configuraciones
     _$.ajax( "assets/modules/json/config.json", function( data ){
         engine.map.type = JSON.parse( data );
+    } );
+
+    // obtenemos las zonas
+
+    _$.ajax( "assets/modules/json/zones.json", function( data ){
+        engine.map.zones = JSON.parse( data );
     } );
 } );
 
@@ -154,7 +162,7 @@ function mod_info(){
 };
 
 function get_location(){
-    engine.map.coords = {};
+    // engine.map.coords = {};
     // si el navegador soporta la geolocalización
     if ( navigator.geolocation ) {
         // obtenemos la ubicación del usuario
@@ -163,7 +171,7 @@ function get_location(){
                 "lat": location.coords.latitude,
                 "long": location.coords.longitude
             };
-
+            console.log("coords ready!!");
         }, function( err ){
             switch( err.code ) {
                 // El usuario denegó el permiso para la Geolocalización.
@@ -243,11 +251,19 @@ function mod_map(){
         renderer: L.canvas(),
         center: [ engine.map.coords.lat, engine.map.coords.long ],
         zoom: 18,
-        minZoom: 12,
-        maxZoom: 18,
+        // minZoom: 12,
+        // maxZoom: 18,
         zoomControl: false,
         attributionControl: true,
+        rotate: true,
+        touchRotate: true,
+        rotateControl: {
+            closeOnZeroBearing: false
+        },
+        bearing: 0,
     } );
+
+    _$( ".leaflet-control-rotate" ).css( "display", "none" );
     
     // add tile layers carto light
     L.tileLayer( engine.map.type.light, {} ).addTo( engine.map.container );
@@ -259,7 +275,55 @@ function mod_map(){
     .html( "" )
     .addClass( 'unselectable' ) 
     .css( "font-size", "10px" )
-    .html( '&copy; 2021<a href="" class="attribution-dm"> DriverMe</a>' );
+    .html( '&copy; 2022<a href="" class="attribution-dm"> DriverMe</a>' );
+    
+    var coords = [],
+        polygon;
+
+        var zones = L.polygon([
+            engine.map.zones
+        ], {
+            // color: "#73d3cb",
+            // fillColor: "transparent",
+            weight: 0.3
+            // opacity: 0,
+        }).addTo(engine.map.container);
+    
+    engine.map.container.on( "click", function( e ){
+        var pos = e.latlng;
+        coords.push([pos.lat, pos.lng]);
+
+        try{
+            engine.map.container.removeLayer(polygon);
+        } catch(e){}
+        polygon = L.polygon([
+            coords
+        ], {
+            // color: "#73d3cb",
+            // fillColor: "red",
+            weight: 0.3
+        }).addTo(engine.map.container);
+
+    })
+
+    engine.map.container.on( "contextmenu", function( e ){
+        try{
+            engine.map.container.removeLayer(polygon);
+        }catch(e){}
+        coords.pop();
+        polygon = L.polygon([
+            coords
+        ], { weight: 0.3}, ).addTo(engine.map.container);
+    });
+
+    _$("#btn-origin").event("click", function(){
+        var coordinates = "";
+        for(var i = 0; i < coords.length; i++){
+            coordinates += "[" + coords[i] + "],"
+        }
+
+        console.log(coordinates);
+    });
 };
 
 function mod_hotel(){

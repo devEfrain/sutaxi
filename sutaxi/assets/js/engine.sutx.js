@@ -561,15 +561,12 @@ function mod_config(){
         chk_auto_rate.attr( "checked", localStorage.getItem( "auto_rate") );
     }
     chk_auto_rate.event( "click", function(){
-        if( this.attr( "checked" ) ) {
+        if( localStorage.getItem( "auto_rate" ) ) {
+            watch_location( false );
             localStorage.removeItem( "auto_rate" );
-            try{
-                navigator.geolocation.clearWatch( engine.coords );
-            } catch ( e ){}
         } else {
             localStorage.setItem( "auto_rate", true );
         }
-        
     } );
 
     // obtenemos el status de hide_controls para configurar el check

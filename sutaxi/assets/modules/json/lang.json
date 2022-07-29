@@ -1,0 +1,178 @@
+{
+    "es": {
+        "mnu":["información", "tarifario ciudad", "zona hotelera", "servicios", "configuración"],
+        "main":{
+            "title": "solicita tu servicio",
+            "btnCall": "llamar"
+        },
+        "map": [
+            "Origen",
+            "Destino",
+            "Seleccionar"
+
+        ],
+        "hotel": [
+            "Zona",
+            "Destino",
+            "Seleccionar",
+            "Centro",
+            "Sur",
+            "Norte",
+            "Opciones"
+        ],
+        "services": {
+            "1": {
+                "title": "CENOTES CRISTALINO, EDÉN, AZUL KANTUNCHI, PLAYA XPUHA",
+                "trip": "SERVICIO ESPECIAL IDA Y VUELTA",
+                "time": "3 HORAS DE ESPERA",
+                "people": "1-4 PERSONAS",
+                "price": "$ 1,300.00 Mxn"
+            },
+            "2": {
+                "title": "CENOTE CASA TORTUGA, DOS OJOS O CHEMUYIL MONKIS",
+                "trip": "SERVICIO ESPECIAL IDA Y VUELTA",
+                "time": "3 HORAS DE ESPERA",
+                "people": "1-4 PERSONAS",
+                "price": "$ 2,000.00 Mxn"
+            },
+            "3": {
+                "title": "CIRCO DU SOLEIL",
+                "trip": "SERVICIO ESPECIAL IDA Y VUELTA",
+                "time": "TIEMPO DE LA FUNCIÓN",
+                "people": "1-4 PERSONAS",
+                "price": "$ 1,200.00 Mxn"
+            },
+            "4": {
+                "title": "CANCÚN SHOPING MIRADOR, PLAZA LA ISLA Y ZONA HOTELERA",
+                "trip": "SERVICIO ESPECIAL IDA Y VUELTA",
+                "time": "3 HORAS DE ESPERA",
+                "people": "1-4 PERSONAS",
+                "price": "$ 2,300.00 Mxn"
+            },
+            "5": {
+                "title": "TULUM-RUINAS-PLAYA-CENOTE",
+                "trip": "SERVICIO ESPECIAL IDA Y VUELTA, NEVERA CON BEBIDAS (OPCIONAL CERVEZAS)",
+                "time": "6 HORAS DE ESPERA (2 HORAS POR LUGAR)",
+                "people": "1-4 PERSONAS",
+                "price": "$ 2,800.00 Mxn"
+            },
+            "6": {
+                "title": "CHICHÉN ITZÁ",
+                "trip": "SERVICIO ESPECIAL IDA Y VUELTA, NEVERA CON BEBIDAS (OPCIONAL CERVEZAS), RECORRIDO EN LAS RUINAS, CENOTE, VALLADOLID",
+                "time": "TIEMPO LIBRE",
+                "people": "1-4 PERSONAS",
+                "price": "$ 4,000.00 Mxn"
+            },
+            "7": {
+                "title": "TOUR RUINAS COBA-TULUM",
+                "trip": "SERVICIO ESPECIAL IDA Y VUELTA",
+                "time": "TIEMPO LIBRE",
+                "people": "1-4 PERSONAS",
+                "price": "$ 3,600.00 Mxn"
+            },
+            "8": {
+                "title": "HOLBOX",
+                "trip": "SERVICIO ESPECIAL IDA Y VUELTA",
+                "time": "4 HORAS DE ESPERA",
+                "people": "1-4 PERSONAS",
+                "price": "$ 4,000.00 Mxn"
+            }
+        },
+        "config":[
+            "Mostrar límite de zonas en el mapa",
+            "Mostrar área de zonas",
+            "Permitir al mapa tarifa automática",
+            "Ocultar controles al mover el mapa",
+            "Lenguaje ( English )",
+            "Tipo de cambio ( Dolar americano )"
+        ]
+    },
+    "en": {
+        "mnu":["information", "city rate", "hotel zone", "services", "configuration"],
+        "main":{
+            "title": "request your service",
+            "btnCall": "call"
+        },
+        "map": [
+            "Origin",
+            "Destination",
+            "Select"
+
+        ],
+        "hotel": [
+            "Zone",
+            "Destination",
+            "Select",
+            "Down town",
+            "South",
+            "North",
+            "Options"
+        ],
+        "services": {
+            "1": {
+                "title": "CENOTES CRISTALINO, EDÉN, AZUL KANTUNCHI, PLAYA XPUHA",
+                "trip": "ROUND TRIP ESPECIAL SERVICE",
+                "time": "3 HOURS OF WAITING",
+                "people": "1-4 PEOPLES",
+                "price": "$ 1,300.00 Mxn"
+            },
+            "2": {
+                "title": "CENOTE CASA TORTUGA, DOS OJOS O CHEMUYIL MONKIS",
+                "trip": "ROUND TRIP ESPECIAL SERVICE",
+                "time": "3 HOURS OF WAITING",
+                "people": "1-4 PEOPLES",
+                "price": "$ 2,000.00 Mxn"
+            },
+            "3": {
+                "title": "CIRCO DU SOLEIL",
+                "trip": "ROUND TRIP ESPECIAL SERVICE",
+                "time": "SHOW TIME",
+                "people": "1-4 PEOPLES",
+                "price": "$ 1,200.00 Mxn"
+            },
+            "4": {
+                "title": "CANCÚN SHOPING MIRADOR, PLAZA LA ISLA Y ZONA HOTELERA",
+                "trip": "ROUND TRIP ESPECIAL SERVICE",
+                "time": "3 HOURS OF WAITING",
+                "people": "1-4 PEOPLES",
+                "price": "$ 2,300.00 Mxn"
+            },
+            "5": {
+                "title": "TULUM-RUINAS-PLAYA-CENOTE",
+                "trip": "ROUND TRIP ESPECIAL SERVICE, FRIDGE WITH DRINKS (OPTIONAL BEERS)",
+                "time": "6 HOURS OF WAITING (2 HOURS PER PLACE)",
+                "people": "1-4 PEOPLES",
+                "price": "$ 2,800.00 Mxn"
+            },
+            "6": {
+                "title": "CHICHÉN ITZÁ",
+                "trip": "ROUND TRIP ESPECIAL SERVICE, FRIDGE WITH DRINKS (OPTIONAL BEERS), TOUR IN THE RUINS, CENOTE, VALLADOLID",
+                "time": "FREE TIME",
+                "people": "1-4 PEOPLES",
+                "price": "$ 4,000.00 Mxn"
+            },
+            "7": {
+                "title": "TOUR RUINAS COBA-TULUM",
+                "trip": "ROUND TRIP ESPECIAL SERVICE",
+                "time": "FREE TIME",
+                "people": "1-4 PEOPLES",
+                "price": "$ 3,600.00 Mxn"
+            },
+            "8": {
+                "title": "HOLBOX",
+                "trip": "ROUND TRIP ESPECIAL SERVICE",
+                "time": "4 HOURS OF WAITING",
+                "people": "1-4 PEOPLES",
+                "price": "$ 4,000.00 Mxn"
+            }
+        },
+        "config":[
+            "Show limits on the map",
+            "Show area of zones",
+            "Allow automatic rate in the map",
+            "Hide controls on map move",
+            "Language ( Español )",
+            "Exchange rate ( American dollar )"
+        ]
+    }
+}

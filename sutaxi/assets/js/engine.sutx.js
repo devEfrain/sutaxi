@@ -401,10 +401,17 @@ function mod_map(){
 
     // })
 
+    engine.map.container.on( "mousedown", function(){
+        engine.map_clicked = true;
+    } );
+
+    engine.map.container.on( "mouseup", function(){
+        engine.map_clicked = false;
+    } );
 
     engine.map.container.on( "move", function(){
         // validamos si los controles se ocultan o no al mover el mapa
-        if( localStorage.getItem( "hide_controls" ) ){
+        if( localStorage.getItem( "hide_controls" ) && engine.map_clicked ){
             controls.each( function( index ){
                 index.css( "opacity", "0" )
             })

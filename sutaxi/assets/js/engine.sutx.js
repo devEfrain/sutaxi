@@ -165,11 +165,13 @@ function get_location(){
                 "lat": location.coords.latitude,
                 "long": location.coords.longitude
             };
-            try{
-                mod_map();
-            } catch( e ) {
-                get_location();
-            }
+            engine.timerlocation = setInterval( function(){
+                if( engine.map.coords.lat ){
+                    clearInterval( engine.timerlocation );
+                    mod_map();
+                }
+                // console.log( engine.map.coords )
+            }, 500 )
         }, function( err ){
             switch( err.code ) {
                 // El usuario denegó el permiso para la Geolocalización.

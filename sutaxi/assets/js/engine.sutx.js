@@ -205,11 +205,13 @@ function watch_location( watch ){
             navigator.geolocation.clearWatch( engine.coords );
             engine.coords = 0;
             engine.map_automove = false;
+            engine.isWatching = false;
         }
     } else {
         // si el navegador soporta la geolocalización
         if ( navigator.geolocation ) {
             // obtenemos la ubicación del usuario
+            engine.isWatching = true;
             engine.coords = navigator.geolocation.watchPosition( function( location ){
                 engine.map.coords = {
                     "lat": location.coords.latitude,
@@ -270,7 +272,9 @@ function mod_map(){
     }
     // validamos el mapa proporciona auto rate o no
     if( localStorage.getItem( "auto_rate" ) ){
-        watch_location( true );
+        if( !engine.isWatching ){
+            watch_location( true );
+        }
     }
 
     

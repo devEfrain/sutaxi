@@ -401,11 +401,11 @@ function mod_map(){
 
     // })
 
-    engine.map.container.on( "mousedown", function(){
+    engine.map.container.on( "mousedown touchstart", function(){
         engine.map_clicked = true;
     } );
 
-    engine.map.container.on( "mouseup", function(){
+    engine.map.container.on( "mouseup touchend", function(){
         engine.map_clicked = false;
     } );
 

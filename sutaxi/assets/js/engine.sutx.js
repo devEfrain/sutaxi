@@ -203,6 +203,8 @@ function watch_location( watch ){
     if( !watch ){
         if( navigator.geolocation ){
             navigator.geolocation.clearWatch( engine.coords );
+            engine.coords = 0;
+            engine.map_automove = false;
         }
     } else {
         // si el navegador soporta la geolocalización
@@ -214,6 +216,7 @@ function watch_location( watch ){
                     "long": location.coords.longitude
                 };
                 try{
+                    engine.map_automove = true;
                     engine.map.container.setView([engine.map.coords.lat, engine.map.coords.long])
                 }catch(e){}
             }, function( err ){
@@ -372,9 +375,10 @@ function mod_map(){
                 name: engine.rates.city[ i + 1 ]
             } ).on("click", function( e ){
                 try{
-                    this.bindPopup( e.target.options.name.description ).openPopup();
+                    if( !localStorage.getItem( "auto_rate" ) && ( localStorage.getItem( "show_limits" ) || localStorage.getItem( "show_area" ) ) ){
+                        this.bindPopup( e.target.options.name.description ).openPopup();
+                    }
                 }catch(e){}
-                console.log(this)
             }).addTo( engine.map.container );
         }
 
@@ -401,18 +405,9 @@ function mod_map(){
 
     // })
 
-    engine.map.container.on( "mousedown", function(){
-        engine.map_clicked = true;
-	    alert("clickeado");
-    } );
-
-    engine.map.container.on( "mouseup", function(){
-        engine.map_clicked = false;
-    } );
-
     engine.map.container.on( "move", function(){
         // validamos si los controles se ocultan o no al mover el mapa
-        if( localStorage.getItem( "hide_controls" ) && engine.map_clicked ){
+        if( localStorage.getItem( "hide_controls" ) && !engine.map_automove ){
             controls.each( function( index ){
                 index.css( "opacity", "0" )
             })
@@ -420,6 +415,8 @@ function mod_map(){
     } );
 
     engine.map.container.on( "moveend", function(){
+
+        engine.map_automove = false;
 
         var layer = this.getLayerAt(
             parseInt(engine.appModule.context.getBoundingClientRect().width / 2) , 

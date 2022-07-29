@@ -403,10 +403,7 @@ function mod_map(){
 
     engine.map.container.on( "mousedown", function(){
         engine.map_clicked = true;
-    } );
-	
-engine.map.container.on( "touchstart", function(){
-        alert("presionadoooooo")
+	    alert("clickeado");
     } );
 
     engine.map.container.on( "mouseup", function(){

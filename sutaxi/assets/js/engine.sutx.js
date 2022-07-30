@@ -50,7 +50,7 @@ window.addEventListener( "load", function(){
 
 } );
 
-function set_mnu() {
+function set_mnu( lang ) {
     "use strict";
     engine.mnu = _$( ".mnu-box > .icon, .mnu-box > .title" );
     engine.lnk = _$( "a" );
@@ -78,22 +78,25 @@ function set_mnu() {
         }
     } );
 
-    engine.lnk.each( function( index ){
-        index.event( "click", function( e ){
-            e.preventDefault();
-            for( var x = 0; x < engine.lnk.context.length; x++ ){
-                _$( engine.lnk.context[ x ] ).child().child().child().child().css( "fill", "rgb( 80, 80, 80)");
-            }
-            this.child().child().child().child().css( "fill", "rgb(127, 196, 191)" );
-            var item = this.attr( "data-n" );
-            engine.home.css( "visibility", "visible" );
-            engine.headerTitle.html( engine.lang.mnu[ this.attr( "data-n" ) ] );
-            _$.ajax( this.attr( "href" ), function( data ){
-                engine.appModule.html( data );
-                set_module( item );
+    if( !lang ){
+        engine.lnk.each( function( index ){
+            index.event( "click", function( e ){
+                e.preventDefault();
+                for( var x = 0; x < engine.lnk.context.length; x++ ){
+                    _$( engine.lnk.context[ x ] ).child().child().child().child().css( "fill", "rgb( 80, 80, 80)");
+                }
+                this.child().child().child().child().css( "fill", "rgb(127, 196, 191)" );
+                var item = this.attr( "data-n" );
+                engine.home.css( "visibility", "visible" );
+                engine.headerTitle.html( engine.lang.mnu[ this.attr( "data-n" ) ] );
+                _$.ajax( this.attr( "href" ), function( data ){
+                    engine.appModule.html( data );
+                    set_module( item );
+                } );
             } );
         } );
-    } );
+    }
+
 };
 
 // modulo inicial
@@ -431,10 +434,13 @@ function mod_map(){
             select_destiny.attr( "value", layer.options.index );
             try{
                 btn_origin.html(
-                    "$ " +
                     engine.rates.city[ select_destiny.attr( "value" ) ].tari[
                         Number( select_origin.attr( "value" ) ) - 1
-                    ] +
+                    ] !== undefined ? "$ " +
+                    engine.rates.city[ select_destiny.attr( "value" ) ].tari[
+                        Number( select_origin.attr( "value" ) ) - 1
+                    ] + ".00 Mxn" :
+                    "$ 0"  +
                     ".00 Mxn."
                 );
             } catch ( e ) {}
@@ -613,7 +619,7 @@ function mod_config(){
             idx++;
         } );
 
-        set_mnu();
+        set_mnu( true );
         
     } );
     

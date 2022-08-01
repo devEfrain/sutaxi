@@ -7,6 +7,7 @@ var engine = {
     map: {
         coords: {}
     },
+    itemSelected: undefined
 };
 
 window.addEventListener( "load", function(){
@@ -87,12 +88,15 @@ function set_mnu( lang ) {
                 }
                 this.child().child().child().child().css( "fill", "rgb(127, 196, 191)" );
                 var item = this.attr( "data-n" );
-                engine.home.css( "visibility", "visible" );
-                engine.headerTitle.html( engine.lang.mnu[ this.attr( "data-n" ) ] );
-                _$.ajax( this.attr( "href" ), function( data ){
-                    engine.appModule.html( data );
-                    set_module( item );
-                } );
+                if( item !== engine.itemSelected ) {
+                    engine.itemSelected = item;
+                    engine.home.css( "visibility", "visible" );
+                    engine.headerTitle.html( engine.lang.mnu[ this.attr( "data-n" ) ] );
+                    _$.ajax( this.attr( "href" ), function( data ){
+                        engine.appModule.html( data );
+                        set_module( item );
+                    } );
+                }
             } );
         } );
     }
@@ -261,6 +265,10 @@ function mod_map(){
         option,
         cfg = {};
 
+    if( !engine.map.zoom ){
+        engine.map.zoom = 18;
+    }
+
     // validamos si mostrar límite de zonas o no
     if( localStorage.getItem( "show_limits" ) ){
         cfg.showLimits = 1;
@@ -295,6 +303,9 @@ function mod_map(){
         option.innerHTML = ( i + 1 ) + ": " + engine.rates.city[ i + 1 ].title;
         select_origin.context.appendChild( option );
     }
+    if( engine.map.zoneStart !== undefined ){
+        select_origin.attr( "value", engine.map.zoneStart );
+    }
     select_destiny.context.innerHTML = select_origin.context.innerHTML;
 
     select_origin.event( "change", function(){
@@ -306,6 +317,9 @@ function mod_map(){
                 ] +
                 ".00 Mxn."
             );
+        }
+        if( this.attr( "value" ) !== 0 ) {
+            engine.map.zoneStart = this.attr( "value" );
         }
     } );
 
@@ -332,6 +346,7 @@ function mod_map(){
         // y pasamos el atributo al select origin
         if( layer !== undefined ) {
             select_origin.attr( "value", layer.options.index );
+            engine.map.zoneStart = layer.options.index;
         }
     } );
 
@@ -341,10 +356,10 @@ function mod_map(){
         // renderer: L.canvas(),
         renderer: L.svg(),
         center: [ engine.map.coords.lat, engine.map.coords.long ],
-        zoom: 19,
+        zoom: engine.map.zoom,
         enableHighAccuracy: true,
-        // minZoom: 12,
-        // maxZoom: 18,
+        minZoom: 12,
+        maxZoom: 18,
         zoomControl: false,
         attributionControl: true
         // rotate: true,
@@ -453,7 +468,11 @@ function mod_map(){
             })
         }
 
-    } )
+    } );
+
+    engine.map.container.on ( "zoomend", function(){
+        engine.map.zoom = this.getZoom();
+    } );
 
     engine.map.container.on( "contextmenu", function( e ){
         try{

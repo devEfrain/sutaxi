@@ -1,0 +1,615 @@
+:root                                           {
+                                                    --app-grey1: rgb(45, 45, 45);
+                                                    --app-grey2: rgb( 80, 80, 80); 
+                                                    --app-turquesa1: rgb(115, 211, 203);
+                                                    --app-turquesa2: rgb(65, 114, 111);
+                                                    --btn2-background: url(../sutaxi/assets/src/svg/options.svg) no-repeat center;
+                                                    --btn-background-margin: 5px 0px 0px 0px;
+                                                    --btn2-bgColor: var(--app-turquesa1);
+                                                    --btn2-border: none;
+                                                    --btn2-height: 40px;
+                                                    --btn2-width: 160px;
+                                                    --btn2-border-radius: 20px;
+                                                    --btn2-txt-color: white;
+                                                    --btn2-txt-align: right;
+                                                    --btn2-padding: 0px 25px;
+
+                                                    --btn2-border-hover: none;
+                                                    --btn2-color-hover: white;
+                                                    --btn2-bgColor-hover: var(--app-turquesa2);
+
+                                                    --check-font-color: var(--app-turquesa1);
+                                                    --check-bg-color-unchecked: transparent;
+                                                    --check-border-color: var(--app-turquesa1);
+                                                    --check-font-color: var(--app-turquesa1);
+                                                    --check-font-size: 10px;
+                                                    --check-ball-color: var(--app-turquesa1);
+                                                    --check-ball-font-color: white;
+                                                    --check-bg-color-checked: var(--app-turquesa2);
+                                                    --check-lbl-txt-size: 14px;
+
+                                                    --time-transition: 250ms ease-out;
+
+                                                }
+                                                
+body                                            {
+                                                    overflow: hidden;
+                                                }                                                
+
+#wrapper                                        {
+                                                    height: 100%;
+                                                    min-width: 250px;
+                                                    position: absolute;
+                                                    width: 100%;
+                                                    font-family: Arial, Helvetica, sans-serif !important;
+                                                    display: grid;
+                                                    grid-template-rows: 40px 1fr 60px;
+                                                }
+
+/*=================================================================
+                            header
+=================================================================*/
+
+#contextual                                     {
+                                                    cursor: pointer;
+                                                    height: 40px;
+                                                    position: absolute;
+                                                    width: 40px;
+                                                    right: 0px;
+                                                }                                             
+
+#contextual > span                              {
+                                                    background-color: var(--app-turquesa1);
+                                                    border-radius: 50%;
+                                                    display: flex;
+                                                    height: 4px;
+                                                    margin: 0px 2px;
+                                                    width: 4px;
+                                                    float: left;
+                                                }
+
+#contextual:hover                               {
+                                                    background-color: var(--app-grey1);
+                                                }                                                
+
+#contextual:hover > span                        {
+                                                    background-color: white;
+                                                }                                                
+
+#app-header                                     {
+                                                    background-color: var(--app-grey1);
+                                                    display: grid;
+                                                    grid-template-columns: 40px auto 40px;
+                                                    visibility: hidden;
+                                                    /* height: 40px; */
+                                                }
+
+#app-header > #home                             {
+                                                    cursor: pointer;
+                                                    /* height: 40px; */
+                                                    /* width: 40px; */
+                                                }
+
+#app-header > #home > img                       {
+                                                    width: 25px;
+                                                }                                                
+
+#app-header > #title                            {
+                                                    color: white;
+                                                    /* height: 40px; */
+                                                    margin-left: 10px;
+                                                    text-transform: uppercase;
+                                                }
+                                                
+/*=================================================================
+                            footer
+=================================================================*/                                                
+
+footer#app-mnu                                  {
+                                                    background-color: var(--app-grey1);
+                                                    border-top: 1px solid var(--app-grey2);
+                                                    /* bottom: 0px; */
+                                                    cursor: pointer;
+                                                    /* height: 60px; */
+                                                    /* position: absolute; */
+                                                    /* width: 100%; */
+                                                }
+
+footer#app-mnu > ul                             {
+                                                    display: grid;
+                                                    grid-template-columns: auto auto auto auto auto;
+                                                    height: 59px;
+                                                }                                                
+
+footer#app-mnu > ul > a > li                    {
+                                                    color: var(--app-grey2);
+                                                    font-size: 10px;
+                                                    height: 59px;
+                                                    /* width: calc(100% / 5); */
+                                                }
+
+footer#app-mnu > ul > a > li > .mnu-box >
+.icon > svg                                     {
+                                                    fill: var(--app-grey2);
+                                                }                                                
+
+footer#app-mnu > ul > a > li:hover > .mnu-box,
+footer#app-mnu > ul > a > li:hover > .mnu-box >
+.icon > svg                           {
+    color: var(--app-turquesa1);
+    fill: var(--app-turquesa1) !important;
+}
+
+footer#app-mnu > ul > a > li > .mnu-box > .title{
+                                                    margin-top: 5px;
+                                                    white-space: nowrap;
+                                                    text-overflow: ellipsis;
+                                                    overflow: hidden;
+                                                }
+
+/*=================================================================
+                        app-module
+=================================================================*/
+
+#app-module                                     {
+                                                    overflow: auto;
+                                                }
+                                                
+                                                
+/*=================================================================
+                            Adjust
+=================================================================*/
+
+.cancel-interface{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1099;
+}
+
+.dragger{
+    background-color: var(--app-grey1);
+    box-shadow: 0px 0px 10px var(--app-grey1);
+    border-radius: 20px 20px 0px 0px;
+    height: 50px;
+    left: 10px;
+    margin: 0px 10px;
+    top: 125%;
+    width: calc(100% - 20px);
+    z-index: 1100;
+}
+
+.dragger > .title{
+    color: var(--app-turquesa1);
+    font-weight: bold;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.dragger::before{
+    content: '';
+    display: block;
+    position: relative;
+    background-color: var(--app-grey1);
+    box-shadow: 0px 0px 10px var(--app-grey1);
+    border-radius: 4px;
+    cursor: pointer;
+    height: 6px;
+    margin: 0px auto 5px auto;
+    top: -15px;
+    width: 40px;
+
+}
+
+.drag-box{
+    position: absolute;
+    background-color: var(--app-grey1);
+    box-shadow: 0px 0px 10px var(--app-grey1);
+    /* border-radius: 20px 20px 0px 0px; */
+    height: 363px;
+    /* left: 10px; */
+    padding: 0px 20px;
+    top: calc(125% + 50px);
+    margin: 0px 10px;
+    width: calc(100% - 60px);
+    z-index: 1100;
+}
+
+.drag-box > .check-adjust{
+    margin: 10px 0px;
+}
+
+/* #adjust{
+    position: absolute;
+    bottom: -100%;
+    top: 100%;
+    width: 100%;
+    z-index: 1100;
+}
+
+#adjust > #dragger{
+    background-color: var(--app-grey1);
+    box-shadow: 0px 0px 10px var(--app-grey1);
+    border-radius: 4px;
+    cursor: pointer;
+    height: 6px;
+    margin: 0px auto 5px auto;
+    width: 40px;
+}
+
+#adjust > .option-container{
+    background-color: var(--app-grey1);
+    box-shadow: 0px 0px 10px var(--app-grey1);
+    border-radius: 20px 20px 0px 0px;
+    margin: 0px 10px;
+    padding: 20px 10px;
+}
+
+.option-container > .title{
+    color: var(--app-turquesa1);
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.option-container > .check-adjust{
+    margin: 10px 0px;
+} */
+
+/*=================================================================
+                        module - main
+=================================================================*/
+
+/* section#app-module                              {
+                                                    background-color: blueviolet;
+                                                    height: calc(100% - 100px);
+                                                } */
+
+#app-module > #wrap-main                        {
+                                                    display: grid;
+                                                    grid-template-rows: 130px 160px 1fr;
+                                                    height: 100%;
+                                                    position: relative;
+                                                }
+
+#wrap-main > :nth-child(1)                      {
+                                                    color: var(--app-turquesa2);
+                                                    font-weight: bold;
+                                                    font-size: 20px;
+                                                    margin-top: 80px;
+                                                    text-align: center;
+                                                    text-transform: capitalize;
+                                                }
+
+#wrap-main > :nth-child(2)                      {
+                                                    background-image: url('../src/svg/logo.svg');
+                                                    background-repeat: no-repeat;
+                                                    background-position: center;
+                                                    margin-bottom: 10px;
+                                                }
+
+#wrap-main > :nth-child(3) > :nth-child(1)      {
+                                                    display: grid;
+                                                    grid-template-columns: 1fr 1fr;
+                                                }
+
+#wrap-main > :nth-child(3) > :nth-child(1) >
+:nth-child(1), #wrap-main > :nth-child(3) >
+:nth-child(1) > :nth-child(2)                   {
+                                                    display: grid;
+                                                    color: var(--app-turquesa2);
+                                                    font-weight: bold;
+                                                    grid-template-rows: auto 1fr;
+                                                    text-transform: capitalize;
+                                                }
+
+#call, #whatsapp                                {
+                                                    display: grid;
+                                                    grid-template-rows: auto auto;
+                                                    margin: 0px 30px;
+                                                }
+
+#call > a > .icon, #whatsapp > a > .icon        {
+                                                    background-color: var(--app-turquesa1);
+                                                    background-repeat: no-repeat;
+                                                    background-position: center;
+                                                    border-radius: 25px;
+                                                    box-shadow: 0px 0px 10px var(--app-turquesa1);
+                                                    cursor: pointer;
+                                                    height: 50px;
+                                                    margin: 0px auto 10px auto;
+                                                    width: 50px;
+                                                }
+
+#call > a > .icon:hover, 
+#whatsapp > a > .icon:hover                     {
+                                                    background-color: var(--app-turquesa2);
+                                                    box-shadow: 0px 0px 10px var(--app-turquesa2);
+                                                }                                                
+                                                
+
+#call > a > .icon                                   {
+                                                    background-image: url('../src/svg/phone.svg');
+                                                }
+
+#whatsapp > a > .icon                               {
+                                                    background-image: url('../src/svg/whatsapp.svg');
+                                                }
+                                                
+/*=================================================================
+                        module - info
+=================================================================*/
+
+#app-module > #wrap-info                        {
+                                                    color: white;
+                                                    height: 100%;
+                                                    position: relative;
+                                                }
+
+#app-module > #wrap-info > #box                 {
+                                                    background-color: var(--app-grey2);
+                                                    display: grid;
+                                                    grid-template-columns: 4px 84px 1fr;
+                                                    grid-column-gap: 1px;
+                                                    margin-bottom: 1px;
+                                                }
+                                                
+#app-module > #wrap-info > #box > span          {
+                                                    background-color: var(--app-turquesa1);
+                                                    height: auto;
+                                                    width: 4px;
+                                                }
+                                                
+#app-module > #wrap-info > #box >
+:nth-child(2)                                   {
+                                                    font-size: 30px;
+                                                    font-weight: bold;
+                                                }                                     
+
+#app-module > #wrap-info > #box >
+:nth-child(3)                                   {
+                                                    padding: 20px 10px;
+                                                }
+
+/*=================================================================
+                        module - map
+=================================================================*/   
+
+#wrap-map                                       {
+                                                    height: 100%;
+                                                    position: relative;
+                                                }
+
+#wrap-map > #picker                             {
+    left: calc( 50% - (23.484px / 2));
+    position: absolute;
+    top: calc( 50% - 40px );
+    height: 40px;
+    z-index: 1000;
+}                                                
+
+#wrap-map > #buttons                            {
+                                                    bottom: 0px;
+                                                    display: grid;
+                                                    grid-template-columns: 50px 1fr 50px;
+                                                    height: 50px;
+                                                    margin: 0px 20px 20px 20px;
+                                                    position: absolute;
+                                                    width: calc(100% - 40px);
+                                                    z-index: 1000;
+                                                }
+
+#wrap-map > #buttons > a > #btn-whatsapp,
+#wrap-map > #buttons > #btn-options             {
+                                                    height: 50px;
+                                                    background-color: var(--app-turquesa1);
+                                                    border-radius: 25px;
+                                                    box-shadow: 0px 0px 10px var(--app-turquesa1);
+                                                    cursor: pointer;
+                                                }                                                
+
+
+#wrap-map > #buttons > a > #btn-whatsapp:hover,
+#wrap-map > #buttons > #btn-options:hover,
+#wrap-map > #buttons > :nth-child(2) >
+#btn-origin:hover                               {
+                                                    background-color: var(--app-turquesa2);
+                                                    box-shadow: 0px 0px 10px var(--app-turquesa2);
+                                                }
+
+#wrap-map > #buttons > :nth-child(2) >
+#btn-origin                                     {
+                                                    background-color: var(--app-turquesa1);
+                                                    border-radius: 20px;
+                                                    box-shadow: 0px 0px 10px var(--app-turquesa1);
+                                                    color: white;
+                                                    cursor: pointer;
+                                                    height: 40px;
+                                                    width: 180px;
+                                                }
+                                                
+#selection                                      {
+                                                    display: grid;
+                                                    grid-template-rows: auto 40px auto 40px;
+                                                    margin: 0px 20px;
+                                                    position: relative;
+                                                    z-index: 1000;
+                                                }
+
+#selection > :nth-child(1),
+#selection > :nth-child(3),
+#selection > :nth-child(5)                      {
+                                                    color: var(--app-turquesa2);
+                                                    font-weight: bold;
+                                                    font-size: 13px;
+                                                    margin: 10px;
+                                                }
+
+select                                          {
+                                                    background-color: #ffffff;
+                                                    background-image: url(../src/img/arrow_down.png);
+                                                    background-position: right center;
+                                                    background-repeat: no-repeat;
+                                                    border: 1px solid var(--app-turquesa1);
+                                                    border-radius: 20px;
+                                                    color: white;
+                                                    background-color: var(--app-turquesa1);
+                                                    cursor: pointer;
+                                                    display: block;
+                                                    font-family: Arial, Helvetica, sans-serif;
+                                                    font-size: 12px !important;
+                                                    height: 40px;
+                                                    width: 100%;
+                                                    padding: 0px 23px 0px 24px;
+                                                    outline: none;
+                                                    appearance: none;
+                                                    -webkit-appearance: none;
+                                                    -moz-appearance: none;
+                                                    overflow: hidden;
+                                                }
+
+#map                                            {
+                                                    position: absolute;
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    top: 0px;
+                                                    cursor: default !important;
+                                                }
+
+#rate                                           {
+                                                    color: var(--app-turquesa2);
+                                                    font-weight: bold;
+                                                    font-size: 25pt;
+                                                    margin: 20px;
+                                                }
+
+/*=================================================================
+                        module - services
+=================================================================*/                                                 
+
+#app-module > #wrap-services                    {
+    display: grid;
+    gap: 2rem;
+    grid-auto-rows: 440px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    /* grid-auto-flow: dense; */
+    padding: 2rem 1rem;
+}
+
+#app-module > #wrap-services > .card            {
+    background-color: var(--app-turquesa1);
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+#app-module > #wrap-services > .card >
+.cover                                          {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 120px;
+    width: 100%;
+    position: relative;
+}
+
+#app-module > #wrap-services > .card >
+.cover > .img                                   {
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .4);
+    height: 118px;
+    position: absolute;
+    top: 59px;
+    width: 118px;
+}
+
+#app-module > #wrap-services > .card >
+.title                                         {
+    color: white;
+    font-weight: bold;
+    font-size: 14px; 
+    text-transform: uppercase;
+    margin: 70px 10px 0px 10px;
+}
+
+#app-module > #wrap-services > .card >
+.description                                    {
+    color: white;
+    margin: 20px 20px;
+}
+
+#app-module > #wrap-services > .card >
+.description > .info                            {
+    height: 40px;
+    font-size: 12px;
+}
+
+#app-module > #wrap-services > .card >
+.description > .info > .icon                    {
+    fill: #fff;
+    margin-right: 10px;
+}
+
+#wrap-services > :nth-child(1) > .cover         {
+    background-image: url("../src/img/card1_cover.jpg");
+}
+#wrap-services > :nth-child(1) > .cover > .img  {
+    background-image: url("../src/img/card1_img.jpg");
+}
+
+#wrap-services > :nth-child(2) > .cover         {
+    background-image: url("../src/img/card2_cover.jpg");
+}
+#wrap-services > :nth-child(2) > .cover > .img  {
+    background-image: url("../src/img/card2_img.jpg");
+}
+
+#wrap-services > :nth-child(3) > .cover         {
+    background-image: url("../src/img/card3_cover.jpg");
+}
+#wrap-services > :nth-child(3) > .cover > .img  {
+    background-image: url("../src/img/card3_img.jpg");
+}
+
+#wrap-services > :nth-child(4) > .cover         {
+    background-image: url("../src/img/card4_cover.jpg");
+}
+#wrap-services > :nth-child(4) > .cover > .img  {
+    background-image: url("../src/img/card4_img.jpg");
+}
+
+#wrap-services > :nth-child(5) > .cover         {
+    background-image: url("../src/img/card5_cover.jpg");
+}
+#wrap-services > :nth-child(5) > .cover > .img  {
+    background-image: url("../src/img/card5_img.jpg");
+}
+
+#wrap-services > :nth-child(6) > .cover         {
+    background-image: url("../src/img/card6_cover.jpg");
+}
+#wrap-services > :nth-child(6) > .cover > .img  {
+    background-image: url("../src/img/card6_img.jpg");
+}
+
+#wrap-services > :nth-child(7) > .cover         {
+    background-image: url("../src/img/card5_img.jpg");
+}
+#wrap-services > :nth-child(7) > .cover > .img  {
+    background-image: url("../src/img/card7_img.jpg");
+}
+
+#wrap-services > :nth-child(8) > .cover         {
+    background-image: url("../src/img/card8_cover.jpg");
+}
+#wrap-services > :nth-child(8) > .cover > .img  {
+    background-image: url("../src/img/card8_img.jpg");
+}
+/*=================================================================
+                        module - config
+=================================================================*/
+
+#wrap-config > .check-container                 {
+                                                    margin: 10px;
+                                                }

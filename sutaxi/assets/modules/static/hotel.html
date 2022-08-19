@@ -1,0 +1,31 @@
+<div id="wrap-hotel" class="unselectable">
+    <div id="selection">
+        <div>{{ origin }}</div>
+        <div>
+            <select name="" id="zone-h">
+                <option value="0">{{ select }}</option>
+                <option value="1">{{ center }}</option>
+                <option value="2">{{ south }}</option>
+                <option value="3">{{ north }}</option>
+                <option value="4">{{ employed }}</option>
+            </select>
+        </div>
+        <div class="ori hide">{{ ori }}</div>
+        <div class="ori hide">
+            <select name="" id="origin-h">
+                <option value="0">{{ select }}</option>
+            </select>
+        </div>
+        <div>{{ destination }}</div>
+        <div>
+            <select name="" id="destiny-h">
+                <option value="0">{{ select }}</option>
+            </select>
+        </div>
+    </div>
+    <div id="rate">
+        <div id="money" class="centerX">$ 0.00</div>
+        <div class="exchange centerX"></div>
+    </div>
+    <div class="centerX"><button type="button" class="alpha-btn2">{{ options }}</button></div>
+</div>

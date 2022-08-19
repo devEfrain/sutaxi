@@ -775,18 +775,33 @@ function mod_map(){
         if( layer !== undefined ){
             select_destiny.attr( "value", layer.options.index );
             try{
-                engine.btn_origin.html(
-                    engine.rates.city[ select_destiny.attr( "value" ) ].tari[
-                        Number( select_origin.attr( "value" ) ) - 1
-                    ] !== undefined ? "$ " +
-                    engine.rates.city[ select_destiny.attr( "value" ) ].tari[
-                        Number( select_origin.attr( "value" ) ) - 1
-                    ] + ".00 Mxn" :
-                    "$ 0"  +
-                    ".00 Mxn."
-                );
+                // engine.btn_origin.html(
+                //     engine.rates.city[ select_destiny.attr( "value" ) ].tari[Number( select_origin.attr( "value" ) ) - 1] !== undefined ? "$ " +
+                //     engine.rates.city[ select_destiny.attr( "value" ) ].tari[
+                //         Number( select_origin.attr( "value" ) ) - 1
+                //     ] + ".00 Mxn" :
+                //     "$ 0"  +
+                //     ".00 Mxn."
+                // );
+
+                engine.tarifa = engine.rates.city[ select_destiny.attr( "value" ) ].tari[
+                                Number( select_origin.attr( "value" ) ) - 1
+                            ]
+                
+                payment();
             } catch ( e ) {}
         }
+
+
+        // select_destiny.event( "change", function(){
+        //     if( select_origin.attr( "value" ) !== "0" ) {
+        //         engine.tarifa = engine.rates.city[ select_destiny.attr( "value" ) ].tari[
+        //             Number( select_origin.attr( "value" ) ) - 1
+        //         ]
+    
+        //         payment();
+        //     }
+        // } );
 
          // validamos si los controles se ocultan o no al mover el mapa
          if( localStorage.getItem( "hide_controls" ) ){

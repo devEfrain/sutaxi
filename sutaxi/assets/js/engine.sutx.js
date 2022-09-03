@@ -515,7 +515,8 @@ function payment( convert ){
 
     var percent = 0,
         totalPay = 0,
-        pax = 0;
+        pax = 0,
+        nom;
 
         if( !convert ){
             engine.pay = engine.tarifa +
@@ -526,6 +527,8 @@ function payment( convert ){
             engine.extra.ado +
             engine.extra.turist +
             engine.extra.carga;
+
+            nom = "Mxn"
         } else {
             engine.pay = engine.extra.confirm +
             engine.extra.pet +
@@ -537,6 +540,8 @@ function payment( convert ){
 
             totalPay = parseInt( engine.pay / engine.dollar );
             engine.pay = totalPay + engine.tarifa;
+
+            nom = "Dll"
         }
 
         if( engine.extra.pax ){
@@ -552,7 +557,7 @@ function payment( convert ){
 
     try{
         if( engine.itemSelected == "1" ){
-            engine.btn_origin.html( "$ " + parseInt( totalPay ) + ".00 Mxn" );
+            engine.btn_origin.html( "$ " + parseInt( totalPay ) + ".00 " + nom );
         } else if ( engine.itemSelected == "2"){
             engine.money.html( "$ " + parseInt( totalPay ) +".00");
         }
@@ -618,21 +623,18 @@ function mod_map(){
     select_origin.event( "change", function(){
         if( select_destiny.attr( "value" ) !== "0" ) {
 
-            engine.tarifa = engine.rates.city[ select_origin.attr( "value" ) ].tari[
-                            Number( select_destiny.attr( "value" ) ) - 1
-                        ]
-
-            // payment( tarifa );
-
-            // engine.btn_origin.html(
-            //     "$ " +
-            //     engine.rates.city[ select_origin.attr( "value" ) ].tari[
-            //         Number( select_destiny.attr( "value" ) ) - 1
-            //     ] +
-            //     ".00 Mxn."
-            // );
-
-            payment();
+            if( localStorage.getItem( "money_exchange" ) ){
+                engine.tarifa = engine.rates.city[ select_destiny.attr( "value" ) ].tari[
+                    Number( select_origin.attr( "value" ) ) - 1
+                ] / engine.dollar;
+                payment( true );
+            } else {
+                engine.tarifa = engine.rates.city[ select_destiny.attr( "value" ) ].tari[
+                    Number( select_origin.attr( "value" ) ) - 1
+                ]
+    
+                payment();
+            }
         }
         if( this.attr( "value" ) !== 0 ) {
             engine.map.zoneStart = this.attr( "value" );
@@ -641,22 +643,23 @@ function mod_map(){
 
     select_destiny.event( "change", function(){
         if( select_origin.attr( "value" ) !== "0" ) {
-            engine.tarifa = engine.rates.city[ select_destiny.attr( "value" ) ].tari[
-                Number( select_origin.attr( "value" ) ) - 1
-            ]
-            // engine.btn_origin.html(
-            //     "$ " +
-            //     engine.rates.city[ select_destiny.attr( "value" ) ].tari[
-            //         Number( select_origin.attr( "value" ) ) - 1
-            //     ] +
-            //     ".00 Mxn."
-            // );
 
-            payment();
+            if( localStorage.getItem( "money_exchange" ) ){
+                engine.tarifa = engine.rates.city[ select_destiny.attr( "value" ) ].tari[
+                    Number( select_origin.attr( "value" ) ) - 1
+                ] / engine.dollar;
+                payment( true );
+            } else {
+                engine.tarifa = engine.rates.city[ select_destiny.attr( "value" ) ].tari[
+                    Number( select_origin.attr( "value" ) ) - 1
+                ]
+    
+                payment();
+            }
         }
     } );
 
-    engine.btn_origin.html( "$ 0.00 Mxn" ).event( "click", function(){
+    engine.btn_origin.html( "$ 0.00" ).event( "click", function(){
         // verificamos si el picker se encuentra en alguna zona
         var layer = engine.map.container.getLayerAt(
             parseInt(engine.appModule.context.getBoundingClientRect().width / 2) , 
@@ -700,7 +703,7 @@ function mod_map(){
     // _$( ".leaflet-control-rotate" ).css( "display", "none" );
     
     // add tile layers carto light engine.map.type.light
-    L.tileLayer( engine.map.type.light, {} ).addTo( engine.map.container );
+    L.tileLayer( engine.map.type.osm, {} ).addTo( engine.map.container );
     // add scale control
     // L.control.scale().addTo( engine.map.container );
 
@@ -784,11 +787,20 @@ function mod_map(){
                 //     ".00 Mxn."
                 // );
 
-                engine.tarifa = engine.rates.city[ select_destiny.attr( "value" ) ].tari[
-                                Number( select_origin.attr( "value" ) ) - 1
-                            ]
                 
-                payment();
+
+                if( localStorage.getItem( "money_exchange" ) ){
+                    engine.tarifa = engine.rates.city[ select_destiny.attr( "value" ) ].tari[
+                        Number( select_origin.attr( "value" ) ) - 1
+                    ] / engine.dollar;
+                    payment( true );
+                } else {
+                    engine.tarifa = engine.rates.city[ select_destiny.attr( "value" ) ].tari[
+                        Number( select_origin.attr( "value" ) ) - 1
+                    ]
+        
+                    payment();
+                }
             } catch ( e ) {}
         }
 
@@ -871,8 +883,11 @@ function mod_hotel(){
         engine.cancelInterface.removeClass( "hide" );
     });
     zone_h.event( "change", function(){
+        // si la zona no está en "seleccionar"
         if( this.attr( "value" ) !== "0" ) {
+            // si la zona es "colaborador"
             if( this.attr( "value" ) == "4" ){
+                engine.employed = true;
                 for( var i = 0; i < engine.totalZones; i++ ){
                     options = document.createElement( "option" );
                     options.setAttribute( "value", ( i + 1 ) );
@@ -882,13 +897,30 @@ function mod_hotel(){
                 ori.each( function( index ){
                     index.removeClass( "hide" );
                 } );
-            } else {
+
+                // ------ seleccionar --------
+                destiny.html( "<option value = '0'>" + engine.lang.hotel[ 2 ] + "</option>");
+
+                zone = engine.rates.employed;
+
+                for( var hotels in zone ){
+                    options = document.createElement( "option" );
+                    options.value = hotels;
+                    options.innerText = zone[hotels].title
+                    destiny.context.appendChild( options );
+                }
+            } else { // si la zona no es "seleccionar o colaborador"
+                engine.employed = false;
                 ori.each( function( index ){
                     index.addClass( "hide" );
                 } );
+                // ------ seleccionar --------
                 origin.html( "<option value='0'>" + engine.lang.hotel[ 2 ] + "</option>");
+                // obtenemos los datos correspondientes a la zona "centro, sur, norte"
                 zone = engine.rates.hotel[ this.attr( "value" ) ];
+                // ------ seleccionar --------
                 destiny.html( "<option value = '0'>" + engine.lang.hotel[ 2 ] + "</option>");
+                // obtenemos todas las zonas de hotel 
                 for( var hotels in zone ){
                     options = document.createElement( "option" );
                     options.value = hotels;
@@ -896,7 +928,7 @@ function mod_hotel(){
                     destiny.context.appendChild( options );
                 }
             }
-        } else {
+        } else { // si la zona es "seleccionar"
             ori.each( function( index ){
                 index.addClass( "hide" );
             } );
@@ -906,16 +938,44 @@ function mod_hotel(){
     } );
 
     destiny.event( "change", function() {
-        var rate = engine.rates.hotel[ zone_h.attr( "value" ) ][ this.attr( "value" ) ][ 1 ],
-            convert = localStorage.getItem( "money_exchange"),
-            price;
+        if( !engine.employed ){
+            var rate = engine.rates.hotel[ zone_h.attr( "value" ) ][ this.attr( "value" ) ][ 1 ],
+            convert = localStorage.getItem( "money_exchange");
 
-        if( convert ){
-            engine.tarifa = parseInt( rate / convert );
-            payment( convert );
+            if( convert ){
+                engine.tarifa = parseInt( rate / convert );
+                payment( convert );
+            } else {
+                engine.tarifa = rate;
+                payment();
+            }
         } else {
-            engine.tarifa = rate;
-            payment();
+            if( origin.attr( "value" ) !== "0" ){
+                var rate = ( zone[ this.attr( "value" ) ].tari[ origin.attr( "value" ) - 1 ] );
+                convert = localStorage.getItem( "money_exchange");
+
+                if( convert ){
+                    engine.tarifa = parseInt( rate / convert );
+                    payment( convert );
+                } else {
+                    engine.tarifa = rate;
+                    payment();
+                }
+            }
+        }
+    } );
+
+    origin.event( "change", function(){
+        if( destiny.attr( "value" ) !== "0" ){
+            var rate = ( zone[ destiny.attr( "value" ) ].tari[ this.attr( "value" ) - 1 ] );
+            convert = localStorage.getItem( "money_exchange");
+            if( convert ){
+                engine.tarifa = parseInt( rate / convert);
+                payment( convert );
+            } else {
+                engine.tarifa = rate;
+                payment();
+            }
         }
     } );
 }

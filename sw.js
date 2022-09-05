@@ -1,42 +1,42 @@
 //asignar un nombre y versión al cache
 
-var cacheName = "app.sutaxi";
+var cacheName = "app-sutaxi-v1";
 var appShellFiles = [
-  '/assets/css/alpha/alpha.css',
-  '/assets/css/alpha/alpha_cc.css',
-  '/assets/css/ui.sutx.css',
-  '/assets/js/genesis.js',
-  '/assets/js/engine.sutx.js',
-  '/assets/leaflet/leaflet.css',
-  '/assets/leaflet/leaflet.js',
-  '/assets/leaflet/leaflet.CheapLayerAt.js',
-  '/assets/modules/json/config.json',
-  '/assets/modules/json/lang.json',
-  '/assets/modules/json/rates.json',
-  '/assets/modules/json/zones.json',
-  '/assets/modules/static/config.html',
-  '/assets/modules/static/hotel.html',
-  '/assets/modules/static/info.html',
-  '/assets/modules/static/main.html',
-  '/assets/modules/static/map.html',
-  '/assets/modules/static/services.html',
-  '/assets/src/img/arrow_down.png',
-  '/assets/src/img/card1_cover.png',
-  '/assets/src/img/card1_img.png',
-  '/assets/src/img/card2_cover.png',
-  '/assets/src/img/card2_img.png',
-  '/assets/src/img/card3_cover.png',
-  '/assets/src/img/card3_img.png',
-  '/assets/src/img/card4_cover.png',
-  '/assets/src/img/card4_img.png',
-  '/assets/src/img/card5_cover.png',
-  '/assets/src/img/card5_img.png',
-  '/assets/src/img/card6_cover.png',
-  '/assets/src/img/card6_img.png',
-  '/assets/src/img/card7_img.png',
-  '/assets/src/img/card8_cover.png',
-  '/assets/src/img/card8_img.png',
-  '/assets/src/img/picker.png',
+  'assets/css/alpha/alpha.css',
+  'assets/css/alpha/alpha_cc.css',
+  'assets/css/ui.sutx.css',
+  'assets/js/genesis.js',
+  'assets/js/engine.sutx.js',
+  'assets/leaflet/leaflet.css',
+  'assets/leaflet/leaflet.js',
+  'assets/leaflet/Leaflet.CheapLayerAt.js',
+  'assets/modules/json/config.json',
+  'assets/modules/json/lang.json',
+  'assets/modules/json/rates.json',
+  'assets/modules/json/zones.json',
+  'assets/modules/static/config.html',
+  'assets/modules/static/hotel.html',
+  'assets/modules/static/info.html',
+  'assets/modules/static/main.html',
+  'assets/modules/static/map.html',
+  'assets/modules/static/services.html',
+  'assets/src/img/arrow_down.png',
+  'assets/src/img/card1_cover.jpg',
+  'assets/src/img/card1_img.jpg',
+  'assets/src/img/card2_cover.jpg',
+  'assets/src/img/card2_img.jpg',
+  'assets/src/img/card3_cover.jpg',
+  'assets/src/img/card3_img.jpg',
+  'assets/src/img/card4_cover.jpg',
+  'assets/src/img/card4_img.jpg',
+  'assets/src/img/card5_cover.jpg',
+  'assets/src/img/card5_img.jpg',
+  'assets/src/img/card6_cover.jpg',
+  'assets/src/img/card6_img.jpg',
+  'assets/src/img/card7_img.jpg',
+  'assets/src/img/card8_cover.jpg',
+  'assets/src/img/card8_img.jpg',
+  'assets/src/img/picker.png',
   'assets/src/svg/city.svg',
   'assets/src/svg/config.svg',
   'assets/src/svg/home.svg',
@@ -47,7 +47,7 @@ var appShellFiles = [
   'assets/src/svg/phone.svg',
   'assets/src/svg/services.svg',
   'assets/src/svg/whatsapp.svg',
-  'assets/favicon.png',
+  'favicon.png'
 ];
 
 //durante la fase de instalación, generalmente se almacena en caché los activos estáticos
@@ -55,10 +55,9 @@ self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(cacheName)
       .then((cache) => {
-        return cache.addAll(appShellFiles)
-          .then(() => self.skipWaiting())
+        return cache.addAll(appShellFiles);
       })
-      .catch(err => console.log('Falló registro de cache', err))
+      .catch((err) => console.log('SW: ', err))
   )
 });
 

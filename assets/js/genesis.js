@@ -1168,12 +1168,12 @@
 		_local.options.post = '';
 		/*armamos una cadena de variables dependiendo del método a utilizar*/
 		if( _local.options.method === 'get' ) {
-			_local.options.get = '?';
+			_local.options.get = '';
 			/*iteramos sobre el contenido de _local.options.args*/
 			for( var keyName in _local.options.args ) {
 				_local.options.get+= keyName + '=' + _local.options.args[ keyName ] + '&';
 			}
-			_local.options.get+= 'noCache=' + _local.fn.noCache();
+			_local.options.get;
 		} else {
 			for( var keyNamePost in _local.options.args ) {
 				_local.options.post+= keyNamePost + '=' + _local.options.args[ keyNamePost ] + '&';

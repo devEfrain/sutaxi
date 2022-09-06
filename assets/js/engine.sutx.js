@@ -703,7 +703,7 @@ function mod_map(){
     // _$( ".leaflet-control-rotate" ).css( "display", "none" );
     
     // add tile layers carto light engine.map.type.light
-    L.tileLayer( engine.map.type.osm, {} ).addTo( engine.map.container );
+    L.tileLayer( engine.map.type.light, {} ).addTo( engine.map.container );
     // add scale control
     // L.control.scale().addTo( engine.map.container );
 
